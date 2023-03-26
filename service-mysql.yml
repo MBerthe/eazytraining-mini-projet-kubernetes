@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+  namespace: wordpress
+spec:
+  selector:
+    # same name of pod, it needs to match in order the service to select the good pod
+    app: mysql
+  ports:
+    - protocol: TCP
+      # Service port, it common to use the targetPort as service port
+      port: 3306
+      # Container port inside Pod, the service forwards the request to targetPort
+      targetPort: 3306
